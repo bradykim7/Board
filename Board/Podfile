@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '17.0'
+
+target 'Board' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for YourTargetName
+  pod 'Alamofire', '~> 5.6'
+  pod 'Moya', '~> 15.0'
+  pod 'RxSwift', '~> 6.5'
+
+  # Combine은 Apple의 기본 프레임워크이므로 별도로 추가할 필요가 없습니다.
+  # RxSwift와 같이 사용하려면 RxCombine 라이브러리를 사용할 수 있습니다.
+#pod 'RxCombine', '~> 1.9'
+    
+  target 'BoardTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'BoardUITests' do
+    # Pods for testing
+  end
+end

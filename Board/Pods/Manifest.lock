@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (5.9.1)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - RxSwift (6.7.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.6)
+  - Moya (~> 15.0)
+  - RxSwift (~> 6.5)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Moya
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  RxSwift: b9a93a26031785159e11abd40d1a55bcb8057e52
+
+PODFILE CHECKSUM: 01b1f63b485d7d34acd0c1a0820874ec002b2d13
+
+COCOAPODS: 1.15.2
