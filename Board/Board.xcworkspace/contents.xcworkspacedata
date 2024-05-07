@@ -18,7 +18,7 @@
          location = "group:ViewModel"
          name = "ViewModel">
          <FileRef
-            location = "group:PostViewModel">
+            location = "group:PostViewModel.swift">
          </FileRef>
       </Group>
       <Group

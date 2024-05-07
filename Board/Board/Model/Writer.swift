@@ -12,9 +12,8 @@
 //    "emailAddress": "writerTest@mailplug.co.kr" // 게시글 작성자 이메일
 //    "profileImage": "profile_1.png" // 게시글 작성자 이미지
 //}
-struct Writer
-{
+struct Writer: Decodable {
     var name: String
     var email: String
-    var profileImgae: String
+    var profileImage: String
 }

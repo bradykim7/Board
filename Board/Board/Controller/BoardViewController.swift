@@ -7,7 +7,7 @@
 
 import UIKit
 import RxSwift
-//import RxCocoa
+import RxCocoa
 
 class BoardViewController: UIViewController {
     
@@ -38,6 +38,13 @@ class BoardViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 
         // Bind posts to tableView
+//        viewModel.posts.asObservable()
+//            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
+//                cell.textLabel?.text = post.title
+//                cell.detailTextLabel?.text = "Views: \(post.viewCount)"
+//            }
+//            .disposed(by: disposeBag)
+
         viewModel.posts
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
                 cell.textLabel?.text = post.title

@@ -26,14 +26,14 @@
 
 import Foundation
 
-struct Post {
+struct Post: Decodable {
     
     var id: Int
     var title: String
     var board: Board
     var writer: Writer
     var body: String
-    var createAt: Date
+    var createdAt: Date
     var viewCount: Int
     var isNewPost: Bool
     var hasInlineImage: Bool

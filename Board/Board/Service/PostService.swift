@@ -15,7 +15,7 @@ enum PostService {
 extension PostService: TargetType {
     
     var baseURL: URL {
-        return URL(string: MailplugUrl.getBase.path)!
+        return URL(string: MailplugAPI.getBase.path)!
     }
     
     var path: String {
@@ -60,16 +60,16 @@ extension PostService: TargetType {
                 return Data(jsonString.utf8)
         }
         
-        var task: Task {
-            switch self {
-                case .getPosts:
-                    return .requestPlain
-            }
+    }
+    var task: Task {
+        switch self {
+            case .getPosts:
+                return .requestPlain
         }
-        
-        var headers: [String: String]? {
-            return ["Content-type": "application/json"]
-        }
+    }
+    
+    var headers: [String: String]? {
+        return ["Content-type": "application/json"]
     }
     
 }

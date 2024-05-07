@@ -18,9 +18,12 @@ class PostViewModel {
     }
 
     func fetchPosts() {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601  // ISO8601 포맷이라고 가정
+
         provider.rx.request(.getPosts)
             .filterSuccessfulStatusCodes()
-            .map([Post].self)
+            .map([Post].self, using: decoder)
             .subscribe { event in
                 switch event {
                 case .success(let posts):
