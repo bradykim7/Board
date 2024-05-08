@@ -8,35 +8,50 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Moya
 
-class BoardViewController: UIViewController {
+class BoardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     var tableView: UITableView!
     var viewModel = PostViewModel()
     var disposeBag = DisposeBag()
-    var posts: [Post] = [
-        
-    ]
-
+    var posts: [Post] = []
+    let provider = MoyaProvider<PostService>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        bindTableView()
-    }
-
-    private func setupUI() {
-        tableView = UITableView(frame: .zero, style: .plain)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
-
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+        
+        loadPosts()
     }
+
+    func loadPosts() {
+           provider.request(.fetchPosts) { result in
+               switch result {
+               case .success(let response):
+                 do {
+                     self.posts = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
+//                     self.posts = try JSONDecoder().decode([Post].self, from: response.data)
+                     self.tableView.reloadData()
+                 } catch let error {
+                     self.tableView.reloadData()
+//                     print("Error decoding data: \(error)")
+                 }
+               case .failure(let error):
+                   do {
+                       self.posts = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
+                       self.tableView.reloadData()
+                   } catch {
+                       print("Error decoding sample data: \(error)")
+                   }
+               }
+           }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return posts.count
@@ -56,21 +71,19 @@ class BoardViewController: UIViewController {
 
     private func bindTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        viewModel.posts
+            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
+                cell.textLabel?.text = post.title
+                cell.detailTextLabel?.text = "Views: \(post.viewCount)"
+            }
+            .disposed(by: disposeBag)
 
-        // Bind posts to tableView 아래 코드가 발전코드
-//        viewModel.posts
-//            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
-//                cell.textLabel?.text = post.title
-//                cell.detailTextLabel?.text = "Views: \(post.viewCount)"
-//            }
-//            .disposed(by: disposeBag)
-//
-//        // Subscribe to select item
-//        tableView.rx.modelSelected(Post.self)
-//            .subscribe(onNext: { [weak self] post in
-//                print("Selected post: \(post.title)")
-//            })
-//            .disposed(by: disposeBag)
+        // Subscribe to select item
+        tableView.rx.modelSelected(Post.self)
+            .subscribe(onNext: { [weak self] post in
+                print("Selected post: \(post.title)")
+            })
+            .disposed(by: disposeBag)
     }
 }
 

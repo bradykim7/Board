@@ -30,14 +30,29 @@ struct Post: Decodable {
     
     var id: Int
     var title: String
-    var board: Board
+    var boardId: Int
+    var boardDisplayName: String
     var writer: Writer
     var body: String
-    var createdAt: Date
+    var createdAt: String
     var viewCount: Int
     var isNewPost: Bool
     var hasInlineImage: Bool
     var hasAttachment: Bool
     var hasReply: Bool
     
+    enum CodingKeys: String, CodingKey {
+        case id = "postId"
+        case title
+        case boardId
+        case boardDisplayName
+        case writer
+        case body = "contents"
+        case createdAt = "createdDateTime"
+        case viewCount
+        case isNewPost
+        case hasInlineImage
+        case hasAttachment
+        case hasReply
+    }
 }

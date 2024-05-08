@@ -9,7 +9,7 @@ import Moya
 import Foundation
 
 enum PostService {
-    case getPosts
+    case fetchPosts
 }
 
 extension PostService: TargetType {
@@ -20,21 +20,21 @@ extension PostService: TargetType {
     
     var path: String {
         switch self {
-            case .getPosts:
+            case .fetchPosts:
                 return MailplugAPI.getAllPosts.path
         }
     }
     
     var method: Moya.Method {
         switch self {
-            case .getPosts:
+            case .fetchPosts:
                 return .get
         }
     }
     
     var sampleData: Data {
         switch self {
-            case .getPosts:
+            case .fetchPosts:
                 let jsonString = """
             [
                 {
@@ -54,16 +54,35 @@ extension PostService: TargetType {
                     "hasInlineImage": true,
                     "hasAttachment": true,
                     "hasReply": false
+                },
+                {
+                    "postId": 1593022,
+                    "title": "공지2",
+                    "boardId": 27854,
+                    "boardDisplayName": "읽기권한only",
+                    "writer": {
+                        "displayName": "작성자2_TEST",
+                        "emailAddress": "writerTest2@mailplug.co.kr",
+                        "profileImage": "profile_2.png"
+                    },
+                    "contents": "공지게시글2입니다. \\n\\n안녕하세요. 만나서 반갑습니다.",
+                    "createdDateTime": "2023-06-06T03:31:22Z",
+                    "viewCount": 1,
+                    "isNewPost": false,
+                    "hasInlineImage": true,
+                    "hasAttachment": true,
+                    "hasReply": false
                 }
             ]
             """
-                return Data(jsonString.utf8)
+            return Data(jsonString.utf8)
         }
         
     }
+    
     var task: Task {
         switch self {
-            case .getPosts:
+            case .fetchPosts:
                 return .requestPlain
         }
     }

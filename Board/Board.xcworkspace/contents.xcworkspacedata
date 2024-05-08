@@ -8,18 +8,77 @@
       location = "group:Board"
       name = "Board">
       <Group
-         location = "group:Enum"
-         name = "Enum">
+         location = "group:Assets.xcassets"
+         name = "Assets.xcassets">
+         <Group
+            location = "group:AppIcon.appiconset"
+            name = "AppIcon.appiconset">
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:AccentColor.colorset"
+            name = "AccentColor.colorset">
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Contents.json">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Base.lproj"
+         name = "Base.lproj">
+         <FileRef
+            location = "group:LaunchScreen.storyboard">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Enums"
+         name = "Enums">
          <FileRef
             location = "group:Url.swift">
          </FileRef>
       </Group>
       <Group
-         location = "group:ViewModel"
-         name = "ViewModel">
+         location = "group:Models"
+         name = "Models">
+         <FileRef
+            location = "group:Post.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Writer.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Services"
+         name = "Services">
+         <FileRef
+            location = "group:PostService.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:ViewModels"
+         name = "ViewModels">
          <FileRef
             location = "group:PostViewModel.swift">
          </FileRef>
+      </Group>
+      <Group
+         location = "group:Views"
+         name = "Views">
+         <Group
+            location = "group:Controllers"
+            name = "Controllers">
+            <FileRef
+               location = "group:ViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:BoardViewController.swift">
+            </FileRef>
+         </Group>
       </Group>
       <Group
          location = "group:Assets.xcassets"
@@ -49,39 +108,9 @@
             location = "group:LaunchScreen.storyboard">
          </FileRef>
       </Group>
-      <Group
-         location = "group:Controller"
-         name = "Controller">
-         <FileRef
-            location = "group:/Users/mskim/Board/Board/Board/Controller/BoardViewController.swift">
-         </FileRef>
-         <FileRef
-            location = "group:ViewController.swift">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:Model"
-         name = "Model">
-         <FileRef
-            location = "group:Board.swift">
-         </FileRef>
-         <FileRef
-            location = "group:Post.swift">
-         </FileRef>
-         <FileRef
-            location = "group:Writer.swift">
-         </FileRef>
-      </Group>
       <FileRef
          location = "group:AppDelegate.swift">
       </FileRef>
-      <Group
-         location = "group:Service"
-         name = "Service">
-         <FileRef
-            location = "group:PostService.swift">
-         </FileRef>
-      </Group>
       <FileRef
          location = "group:Info.plist">
       </FileRef>
