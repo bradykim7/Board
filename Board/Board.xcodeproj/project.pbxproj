@@ -126,39 +126,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A21D6EC52BE53B350012D41E /* Model */ = {
+		A21D6EC52BE53B350012D41E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A21D6EC62BE53B460012D41E /* Board.swift */,
 				A21D6EC82BE53B530012D41E /* Post.swift */,
 				A21D6ECF2BE541B80012D41E /* Writer.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		A21D6ECA2BE53C360012D41E /* ViewModel */ = {
+		A21D6ECA2BE53C360012D41E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				A21D6ECD2BE5417E0012D41E /* PostViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		A21D6ECB2BE53C3F0012D41E /* Controller */ = {
+		A21D6ECB2BE53C3F0012D41E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A215CB6E2BE8E87A001CC651 /* BoardViewController.swift */,
 				A24B2EE12BE4CB1F001D1E3A /* ViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		A21D6ECC2BE53C4A0012D41E /* Service */ = {
+		A21D6ECC2BE53C4A0012D41E /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				A2B1C8D92BE9178200FAC48F /* PostService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A24B2ED12BE4CB1F001D1E3A = {
@@ -186,11 +186,13 @@
 		A24B2EDC2BE4CB1F001D1E3A /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				A2B1C8DB2BE9178F00FAC48F /* Enum */,
-				A21D6ECC2BE53C4A0012D41E /* Service */,
-				A21D6ECB2BE53C3F0012D41E /* Controller */,
-				A21D6ECA2BE53C360012D41E /* ViewModel */,
-				A21D6EC52BE53B350012D41E /* Model */,
+				A27EBBA32BEAFF6C00A844B7 /* Resources */,
+				A27EBBA22BEAFF6100A844B7 /* Helpers */,
+				A27EBBA12BEAFF2800A844B7 /* Views */,
+				A2B1C8DB2BE9178F00FAC48F /* Enums */,
+				A21D6ECC2BE53C4A0012D41E /* Services */,
+				A21D6ECA2BE53C360012D41E /* ViewModels */,
+				A21D6EC52BE53B350012D41E /* Models */,
 				A24B2EDD2BE4CB1F001D1E3A /* AppDelegate.swift */,
 				A24B2EDF2BE4CB1F001D1E3A /* SceneDelegate.swift */,
 				A24B2EE62BE4CB20001D1E3A /* Assets.xcassets */,
@@ -217,12 +219,34 @@
 			path = BoardUITests;
 			sourceTree = "<group>";
 		};
-		A2B1C8DB2BE9178F00FAC48F /* Enum */ = {
+		A27EBBA12BEAFF2800A844B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A21D6ECB2BE53C3F0012D41E /* Controllers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A27EBBA22BEAFF6100A844B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A27EBBA32BEAFF6C00A844B7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2B1C8DB2BE9178F00FAC48F /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				A2B1C8DD2BE917A900FAC48F /* Url.swift */,
 			);
-			path = Enum;
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

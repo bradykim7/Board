@@ -13,9 +13,11 @@ enum MailplugAPI {
     var path: String {
         switch self {
         case .getBase:
-            return "https://mp-dev.mail-server.kr/api/v2/boards"
+//            return "https://mp-dev.mail-server.kr/api/v2/boards"
+            return "https://bbs.wiro.kr/api/v2/boards"
         case .getAllPosts:
-            return "\(MailplugAPI.getBase.path)/28478/posts"
+//            return "\(MailplugAPI.getBase.path)/28478/posts"
+            return "\(MailplugAPI.getBase.path)/297/posts"
         case .getPostDetails(let postId):
             return "\(MailplugAPI.getAllPosts.path)/\(postId)"
         }
