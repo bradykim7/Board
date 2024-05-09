@@ -22,6 +22,7 @@
 		A24B2EF52BE4CB20001D1E3A /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B2EF42BE4CB20001D1E3A /* BoardTests.swift */; };
 		A24B2EFF2BE4CB20001D1E3A /* BoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B2EFE2BE4CB20001D1E3A /* BoardUITests.swift */; };
 		A24B2F012BE4CB20001D1E3A /* BoardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B2F002BE4CB20001D1E3A /* BoardUITestsLaunchTests.swift */; };
+		A26E58A42BEC910F00FCF2A6 /* PostReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26E58A32BEC910F00FCF2A6 /* PostReponse.swift */; };
 		A2B1C8DA2BE9178200FAC48F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B1C8D92BE9178200FAC48F /* PostService.swift */; };
 		A2B1C8DE2BE917A900FAC48F /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B1C8DD2BE917A900FAC48F /* Url.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		A24B2EFA2BE4CB20001D1E3A /* BoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24B2EFE2BE4CB20001D1E3A /* BoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardUITests.swift; sourceTree = "<group>"; };
 		A24B2F002BE4CB20001D1E3A /* BoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A26E58A32BEC910F00FCF2A6 /* PostReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReponse.swift; sourceTree = "<group>"; };
 		A2B1C8D92BE9178200FAC48F /* PostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		A2B1C8DD2BE917A900FAC48F /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		ACE3ADA882F24ACEA3C13D5D /* Pods_BoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 			children = (
 				A21D6EC82BE53B530012D41E /* Post.swift */,
 				A21D6ECF2BE541B80012D41E /* Writer.swift */,
+				A26E58A32BEC910F00FCF2A6 /* PostReponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				A21D6ED02BE541B80012D41E /* Writer.swift in Sources */,
 				A24B2EE02BE4CB1F001D1E3A /* SceneDelegate.swift in Sources */,
 				A21D6ECE2BE5417E0012D41E /* PostViewModel.swift in Sources */,
+				A26E58A42BEC910F00FCF2A6 /* PostReponse.swift in Sources */,
 				A215CB6F2BE8E87A001CC651 /* BoardViewController.swift in Sources */,
 				A2B1C8DA2BE9178200FAC48F /* PostService.swift in Sources */,
 				A2B1C8DE2BE917A900FAC48F /* Url.swift in Sources */,

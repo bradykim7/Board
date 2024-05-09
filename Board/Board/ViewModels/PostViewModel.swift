@@ -22,7 +22,8 @@ class PostViewModel {
             switch result {
             case .success(let response):
                 do {
-                    self?.posts = try JSONDecoder().decode([Post].self, from: response.data)
+                    let postsResponse = try JSONDecoder().decode(PostsResponse.self, from: response.data)
+                    self?.posts = postsResponse.value
                     DispatchQueue.main.async {
                         self?.onDataUpdated?()
                     }
@@ -49,20 +50,17 @@ class PostViewModel {
         }
     }
 }
-ViewController에서 ViewModel 사용하기
-ViewController는 ViewModel에서 발생하는 변경 사항을 감지하고, 해당 변경에 따라 UI를 업데이트합니다.
 
-swift
-Copy code
-import UIKit
-
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView!
-    var viewModel = PostViewModel()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
- 
+//
+//import UIKit
+//
+//class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+//    var tableView: UITableView!
+//    var viewModel = PostViewModel()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+// 
 //    init() {
 //        fetchPosts()
 //    }

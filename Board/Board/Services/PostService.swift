@@ -88,7 +88,10 @@ extension PostService: TargetType {
     }
     
     var headers: [String: String]? {
-        return ["Content-type": "application/json"]
+        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTUyMjg3NTYsImV4cCI6MTcxNTIzMDU1NiwidXNlcm5hbWUiOiJtYWlsdGVzdEB3NjUud2lyby5rciIsInNjb3BlIjpbIm1haWwiLCJhZGRyZXNzYm9vayIsImNhbGVuZGFyIiwiYm9hcmQiLCJzbXMiLCJtZXNzZW5nZXIiLCJlYXMiLCJkcml2ZSIsIndvcmtub3RlIiwib3JnYW5pemF0aW9uIiwiYWRtaW4iLCJocm0iXSwic2VydmljZUlkIjoxMDAwMDAwODgzLCJnb29kcyI6IkdXX0RFREkiLCJhY2NvdW50TmFtZSI6Ilx1YWQwMFx1YjlhY1x1Yzc5MCIsImNsaWVudElQIjoiMTkyLjE2OC4zLjExIiwianRpIjoiMmIxZSJ9.gU6YlKoOCisp_o6JiQD5iYSDUJYEswIrbPrUHlBS2Ek"
+        
+        return ["Content-Type": "application/json",
+                           "Authorization": "Bearer \(token)"]
     }
     
 }
