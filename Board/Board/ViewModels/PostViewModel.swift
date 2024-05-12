@@ -5,82 +5,56 @@
 //  Created by min seok Kim on 5/4/24.
 //
 
-import RxSwift
+import Foundation
 import Moya
+import RxSwift
+import RxCocoa
 
 class PostViewModel {
     private let provider = MoyaProvider<PostService>()
-    
-    var posts: [Post] = []
-    var errorMessage: String?
+    private let disposeBag = DisposeBag()
 
-    // UI 업데이트를 위한 클로저
+    var posts = BehaviorRelay<[Post]>(value: [])
+    var errorMessage = PublishSubject<String?>()
+
+
     var onDataUpdated: (() -> Void)?
     var onErrorOccurred: (() -> Void)?
 
+
     func loadPosts() {
-        provider.request(.fetchPosts) { [weak self] result in
-            switch result {
-            case .success(let response):
-                do {
-                    let postsResponse = try JSONDecoder().decode(PostsResponse.self, from: response.data)
-                    self?.posts = postsResponse.value
-                    DispatchQueue.main.async {
-                        self?.onDataUpdated?()
-                    }
-                } catch let error {
-                    print("Error decoding response: \(error)")
-                    self?.loadSampleData() // 오류 발생 시 sampleData 로드
-                }
-            case .failure:
-                self?.loadSampleData() // 요청 실패 시 sampleData 로드
+           provider.rx.request(.fetchPosts)
+               .observe(on: MainScheduler.instance)
+               .subscribe(onSuccess: { [weak self] response in
+                   self?.handleSuccess(response)
+               }, onFailure: { [weak self] error in
+                   self?.handleError(error)
+                   self?.loadSampleData()
+               })
+               .disposed(by: disposeBag)
+       }
+
+    private func handleSuccess(_ response: Response) {
+            do {
+                let postsResponse = try JSONDecoder().decode(PostsResponse.self, from: response.data)
+                posts.accept(postsResponse.value)
+            } catch {
+                errorMessage.onNext("Error decoding response: \(error)")
+                loadSampleData()
             }
         }
+
+    private func handleError(_ error: Error) {
+        errorMessage.onNext("Network or decoding error: \(error.localizedDescription)")
     }
 
     private func loadSampleData() {
         do {
-            self.posts = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
-            DispatchQueue.main.async {
-                self.onDataUpdated?()
-            }
+            let sampleData = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
+            posts.accept(sampleData)
         } catch {
-            self.errorMessage = "Error decoding sample data: \(error)"
-            DispatchQueue.main.async {
-                self.onErrorOccurred?()
-            }
+            errorMessage.onNext("Error decoding sample data: \(error)")
         }
     }
 }
 
-//
-//import UIKit
-//
-//class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-//    var tableView: UITableView!
-//    var viewModel = PostViewModel()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-// 
-//    init() {
-//        fetchPosts()
-//    }
-//
-//    func fetchPosts() {
-//        let decoder = JSONDecoder()
-//        decoder.dateDecodingStrategy = .iso8601  // ISO8601 포맷이라고 가정
-//
-//        provider.rx.request(.fetchPosts)
-//            .filterSuccessfulStatusCodes()
-//            .map([Post].self, using: decoder)
-//            .subscribe { event in
-//                switch event {
-//                case .success(let posts):
-//                    self.posts.onNext(posts)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }.disposed(by: disposeBag)
-//    }
-//}
