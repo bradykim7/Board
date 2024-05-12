@@ -46,6 +46,9 @@
          location = "group:Models"
          name = "Models">
          <FileRef
+            location = "group:PostReponse.swift">
+         </FileRef>
+         <FileRef
             location = "group:Post.swift">
          </FileRef>
          <FileRef

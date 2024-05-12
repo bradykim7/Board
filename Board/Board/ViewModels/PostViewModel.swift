@@ -10,6 +10,7 @@ import Moya
 
 class PostViewModel {
     private let provider = MoyaProvider<PostService>()
+    
     var posts: [Post] = []
     var errorMessage: String?
 
@@ -27,7 +28,8 @@ class PostViewModel {
                     DispatchQueue.main.async {
                         self?.onDataUpdated?()
                     }
-                } catch {
+                } catch let error {
+                    print("Error decoding response: \(error)")
                     self?.loadSampleData() // 오류 발생 시 sampleData 로드
                 }
             case .failure:

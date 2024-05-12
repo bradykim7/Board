@@ -15,11 +15,11 @@
 struct Writer: Decodable {
     var name: String
     var email: String
-    var profileImage: String
+    var photo: String
     
     enum CodingKeys: String, CodingKey {
         case name = "displayName"
         case email = "emailAddress"
-        case profileImage 
+        case photo
     }
 }
