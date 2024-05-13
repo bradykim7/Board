@@ -36,7 +36,7 @@ class PostViewModel {
 
     private func handleSuccess(_ response: Response) {
             do {
-                let postsResponse = try JSONDecoder().decode(PostsResponse.self, from: response.data)
+                let postsResponse = try JSONDecoder().decode(PostResponse.self, from: response.data)
                 posts.accept(postsResponse.value)
             } catch {
                 errorMessage.onNext("Error decoding response: \(error)")

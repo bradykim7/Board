@@ -1,15 +1,16 @@
 //
-//  BoardResponse.swift
+//  PostReponse.swift
 //  Board
 //
-//  Created by min seok Kim on 5/12/24.
+//  Created by min seok Kim on 5/9/24.
 //
 
 import Foundation
 
-struct PostsResponse: Decodable {
+
+struct PostResponse: Decodable {
     
-    let value: [Board]
+    let value: [Post]
     let count: Int
     let offset: Int
     let limit: Int

@@ -122,6 +122,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		231CF3DA2BF24C1D003407DB /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				A26E58A32BEC910F00FCF2A6 /* PostReponse.swift */,
+				A26E58A72BF10D9C00FCF2A6 /* BoardResponse.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
 		5C3BD85DE94BCFA2EFF6A430 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,11 +144,10 @@
 		A21D6EC52BE53B350012D41E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				231CF3DA2BF24C1D003407DB /* DTOs */,
 				A21D6EC82BE53B530012D41E /* Post.swift */,
 				A21D6ECF2BE541B80012D41E /* Writer.swift */,
-				A26E58A32BEC910F00FCF2A6 /* PostReponse.swift */,
 				A26E58A52BF10D3A00FCF2A6 /* Board.swift */,
-				A26E58A72BF10D9C00FCF2A6 /* BoardResponse.swift */,
 				A26E58A92BF10E3A00FCF2A6 /* Capability.swift */,
 			);
 			path = Models;
