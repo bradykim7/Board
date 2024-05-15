@@ -15,7 +15,7 @@ enum MailplugAPI {
     private var baseURL: String {
         //            return "https://mp-dev.mail-server.kr/api/v2/boards"
         //            return "https://bbs.wiro.kr/api/v2/boards"
-        return "https://719166d8-4e43-4a1b-814a-949362b9afac.mock.pstmn.io/api/v2/"
+        return "https://719166d8-4e43-4a1b-814a-949362b9afac.mock.pstmn.io/api/v2"
     }
     
     var path: String {
@@ -25,7 +25,7 @@ enum MailplugAPI {
         case .getBoards:
             return "\(baseURL)/boards"
         case .getBoardDetails(let boardId):
-            return "\(baseURL)/boards/\(boardId)"
+            return "\(boardId)"
         case .getAllPosts:
 //            return "\(MailplugAPI.getBase.path)/28478/posts"
             return "\(baseURL)/boards/28478/posts"

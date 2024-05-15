@@ -22,7 +22,7 @@ import Foundation
 //}
 
 struct Board: Decodable {
-    var id: String
+    var id: Int
     var name: String
     var boardType: String
     var isFavorite: Bool

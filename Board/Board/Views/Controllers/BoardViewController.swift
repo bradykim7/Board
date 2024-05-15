@@ -20,17 +20,19 @@ class BoardViewController: UIViewController {
         viewModel = PostViewModel()
         boardViewModel = BoardViewModel()
         setupTableView()
+        setTableNavibar()
         bindPostViewModel()
         viewModel.loadPosts()
     }
     
     func setTableNavibar() {
+        boardViewModel.loadBoard()
         boardViewModel.BoardObservable
-                   .map { boards in
-                       boards.first?.name
-                   }
-                   .bind(to: self.rx.title)
-                   .disposed(by: disposeBag)
+            .map { boards in
+                return boards.first?.name ?? "Default Title"
+            }
+            .bind(to: self.navigationItem.rx.title)
+            .disposed(by: disposeBag)
     }
     
     func setupTableView() {

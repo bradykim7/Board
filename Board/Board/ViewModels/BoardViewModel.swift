@@ -13,6 +13,8 @@ import RxCocoa
 class BoardViewModel {
     
     private let provider = MoyaProvider<BoardService>()
+//    private let provider = MoyaProvider<BoardService>(plugins: [NetworkLoggerPlugin()]) // 디버깅하고 싶을때 plugin 추가
+
     private let disposeBag = DisposeBag()
 
     private var BoardRealy: BehaviorRelay<[Board]> = BehaviorRelay<[Board]>(value: [])
@@ -26,23 +28,24 @@ class BoardViewModel {
         return errorMessageSubject.asObservable()
     }
     
-    func loadPosts() {
-           provider.rx.request(.getBoard)
-               .observe(on: MainScheduler.instance)
-               .subscribe(onSuccess: { [weak self] response in
-                   self?.handleSuccess(response)
-               }, onFailure: { [weak self] error in
-                   self?.handleError(error)
-                   self?.loadSampleData()
-               })
-               .disposed(by: disposeBag)
+    func loadBoard() {
+        provider.rx.request(.getBoard)
+           .observe(on: MainScheduler.instance)
+           .subscribe(onSuccess: { [weak self] response in
+               self?.handleSuccess(response)
+           }, onFailure: { [weak self] error in
+               self?.handleError(error)
+               self?.loadSampleData()
+           })
+           .disposed(by: disposeBag)
     }
 
     private func handleSuccess(_ response: Response) {
             do {
-                let boardResponse = try JSONDecoder().decode(BoardResponse.self, from: response.data)
-                BoardRealy.accept(boardResponse.value)
+                let board = try JSONDecoder().decode(Board.self, from: response.data)
+                BoardRealy.accept([board])
             } catch {
+                print("Decoded boards: \(error)")
                 errorMessageSubject.onNext("Error decoding response: \(error)")
                 loadSampleData()
             }
