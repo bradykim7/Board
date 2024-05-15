@@ -10,16 +10,16 @@ import Moya
 import RxSwift
 import RxCocoa
 
-class PostViewModel {
+class BoardViewModel {
     
-    private let provider = MoyaProvider<PostService>()
+    private let provider = MoyaProvider<BoardService>()
     private let disposeBag = DisposeBag()
 
-    private var postRelay: BehaviorRelay<[Post]> = BehaviorRelay<[Post]>(value: [])
+    private var BoardRealy: BehaviorRelay<[Board]> = BehaviorRelay<[Board]>(value: [])
     private var errorMessageSubject: PublishSubject<String?> = PublishSubject<String?>()
     
-    var postObservable: Observable<[Post]> {
-        return postRelay.asObservable()
+    var BoardObservable: Observable<[Board]> {
+        return BoardRealy.asObservable()
     }
     
     var errorMessageObservable: Observable<String?> {
@@ -27,7 +27,7 @@ class PostViewModel {
     }
     
     func loadPosts() {
-           provider.rx.request(.fetchPosts)
+           provider.rx.request(.getBoard)
                .observe(on: MainScheduler.instance)
                .subscribe(onSuccess: { [weak self] response in
                    self?.handleSuccess(response)
@@ -40,8 +40,8 @@ class PostViewModel {
 
     private func handleSuccess(_ response: Response) {
             do {
-                let postsResponse = try JSONDecoder().decode(PostResponse.self, from: response.data)
-                postRelay.accept(postsResponse.value)
+                let boardResponse = try JSONDecoder().decode(BoardResponse.self, from: response.data)
+                BoardRealy.accept(boardResponse.value)
             } catch {
                 errorMessageSubject.onNext("Error decoding response: \(error)")
                 loadSampleData()
@@ -54,8 +54,8 @@ class PostViewModel {
 
     private func loadSampleData() {
         do {
-            let sampleData = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
-            postRelay.accept(sampleData)
+            let sampleData = try JSONDecoder().decode([Board].self, from: BoardService.getBoard.sampleData)
+            BoardRealy.accept(sampleData)
         } catch {
             errorMessageSubject.onNext("Error decoding sample data: \(error)")
         }

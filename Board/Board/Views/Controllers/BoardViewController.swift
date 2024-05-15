@@ -10,38 +10,51 @@ import RxCocoa
 
 class BoardViewController: UIViewController {
     
-    var tableView: UITableView!
-    var viewModel = PostViewModel()
-    var disposeBag = DisposeBag()
+    private var tableView: UITableView!
+    private var viewModel: PostViewModel!
+    private var boardViewModel: BoardViewModel!
+    private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = PostViewModel()
+        boardViewModel = BoardViewModel()
         setupTableView()
-        bindViewModel()
+        bindPostViewModel()
         viewModel.loadPosts()
+    }
+    
+    func setTableNavibar() {
+        boardViewModel.BoardObservable
+                   .map { boards in
+                       boards.first?.name
+                   }
+                   .bind(to: self.rx.title)
+                   .disposed(by: disposeBag)
     }
     
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
     }
     
-    func bindViewModel() {
-        viewModel.posts.asObservable()
+    func bindPostViewModel() {
+        viewModel.postObservable
             .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
                 cell.textLabel?.text = post.title
             }
             .disposed(by: disposeBag)
 
-        viewModel.errorMessage
+        viewModel.errorMessageObservable
             .subscribe(onNext: { [weak self] message in
-                guard let message = message else { return }
+                guard let self = self, let message = message else { return }
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self?.present(alert, animated: true)
+                self.present(alert, animated: true)
             })
             .disposed(by: disposeBag)
     }
-}
 
+}

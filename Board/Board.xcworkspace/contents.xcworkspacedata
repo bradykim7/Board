@@ -46,8 +46,21 @@
          location = "group:Models"
          name = "Models">
          <FileRef
-            location = "group:PostReponse.swift">
+            location = "group:Board.swift">
          </FileRef>
+         <FileRef
+            location = "group:Capability.swift">
+         </FileRef>
+         <Group
+            location = "group:DTOs"
+            name = "DTOs">
+            <FileRef
+               location = "group:PostReponse.swift">
+            </FileRef>
+            <FileRef
+               location = "group:BoardResponse.swift">
+            </FileRef>
+         </Group>
          <FileRef
             location = "group:Post.swift">
          </FileRef>
@@ -61,12 +74,18 @@
          <FileRef
             location = "group:PostService.swift">
          </FileRef>
+         <FileRef
+            location = "group:BoardService.swift">
+         </FileRef>
       </Group>
       <Group
          location = "group:ViewModels"
          name = "ViewModels">
          <FileRef
             location = "group:PostViewModel.swift">
+         </FileRef>
+         <FileRef
+            location = "group:BoardViewModel.swift">
          </FileRef>
       </Group>
       <Group
