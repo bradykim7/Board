@@ -11,6 +11,7 @@ enum MailplugAPI {
     case getBoards
     case getBoardDetails(boardId: Int)
     case getPostDetails(postId: Int)
+    case getPostBySearchAndTarget(search: String, searchTarget: SearchTarget)
 
     private var baseURL: String {
         //            return "https://mp-dev.mail-server.kr/api/v2/boards"
@@ -21,16 +22,18 @@ enum MailplugAPI {
     var path: String {
         switch self {
         case .getBase:
-            return "\(baseURL)/boards"
+            return "/boards"
         case .getBoards:
-            return "\(baseURL)/boards"
+            return "/boards"
         case .getBoardDetails(let boardId):
-            return "\(boardId)"
+            return "/boards/\(boardId)"
         case .getAllPosts:
 //            return "\(MailplugAPI.getBase.path)/28478/posts"
-            return "\(baseURL)/boards/28478/posts"
+            return "/boards/28478/posts"
         case .getPostDetails(let postId):
-            return "\(baseURL)/posts/\(postId)"
+            return "/posts/\(postId)"
+        case .getPostBySearchAndTarget(let search, let searchTarget):
+            return "/boards/28478/posts?search\(search)&searchTarget=\(searchTarget)"
         }
     }
 }

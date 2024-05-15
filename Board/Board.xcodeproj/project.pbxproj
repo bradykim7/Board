@@ -10,6 +10,8 @@
 		0F84B2874489B1E7A7DF122A /* Pods_Board_BoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D6D3221D04559450E9D997 /* Pods_Board_BoardUITests.framework */; };
 		2375E0132BF48698002760EE /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375E0122BF48698002760EE /* BoardViewModel.swift */; };
 		2375E0152BF486A9002760EE /* BoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375E0142BF486A9002760EE /* BoardService.swift */; };
+		2375E0172BF4E6AC002760EE /* SeacrhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375E0162BF4E6AC002760EE /* SeacrhViewController.swift */; };
+		2375E0192BF4EA12002760EE /* SearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375E0182BF4EA12002760EE /* SearchTarget.swift */; };
 		7FE9D32B1EA83E9FCB6F4F0F /* Pods_Board.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F9481DF0FE9A1EA0D83A60 /* Pods_Board.framework */; };
 		9DDA254E6EF4B01B939BBEB8 /* Pods_BoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE3ADA882F24ACEA3C13D5D /* Pods_BoardTests.framework */; };
 		A215CB6F2BE8E87A001CC651 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A215CB6E2BE8E87A001CC651 /* BoardViewController.swift */; };
@@ -55,6 +57,8 @@
 		15D5C47D43AF56CF72B7D689 /* Pods-BoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoardTests.release.xcconfig"; path = "Target Support Files/Pods-BoardTests/Pods-BoardTests.release.xcconfig"; sourceTree = "<group>"; };
 		2375E0122BF48698002760EE /* BoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		2375E0142BF486A9002760EE /* BoardService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardService.swift; sourceTree = "<group>"; };
+		2375E0162BF4E6AC002760EE /* SeacrhViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeacrhViewController.swift; sourceTree = "<group>"; };
+		2375E0182BF4EA12002760EE /* SearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTarget.swift; sourceTree = "<group>"; };
 		24BD9626CA7075103BD8EACD /* Pods-Board.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Board.debug.xcconfig"; path = "Target Support Files/Pods-Board/Pods-Board.debug.xcconfig"; sourceTree = "<group>"; };
 		59CF50F73833015422AE888B /* Pods-Board-BoardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Board-BoardUITests.debug.xcconfig"; path = "Target Support Files/Pods-Board-BoardUITests/Pods-Board-BoardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74F4AE15C7201E0FAF654384 /* Pods-Board-BoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Board-BoardUITests.release.xcconfig"; path = "Target Support Files/Pods-Board-BoardUITests/Pods-Board-BoardUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		A21D6ECB2BE53C3F0012D41E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2375E0162BF4E6AC002760EE /* SeacrhViewController.swift */,
 				A215CB6E2BE8E87A001CC651 /* BoardViewController.swift */,
 				A24B2EE12BE4CB1F001D1E3A /* ViewController.swift */,
 			);
@@ -268,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				A2B1C8DD2BE917A900FAC48F /* Url.swift */,
+				2375E0182BF4EA12002760EE /* SearchTarget.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2375E0192BF4EA12002760EE /* SearchTarget.swift in Sources */,
 				A24B2EE22BE4CB1F001D1E3A /* ViewController.swift in Sources */,
 				A26E58A82BF10D9C00FCF2A6 /* BoardResponse.swift in Sources */,
 				A24B2EDE2BE4CB1F001D1E3A /* AppDelegate.swift in Sources */,
@@ -520,6 +527,7 @@
 				A24B2EE02BE4CB1F001D1E3A /* SceneDelegate.swift in Sources */,
 				A21D6ECE2BE5417E0012D41E /* PostViewModel.swift in Sources */,
 				A26E58A42BEC910F00FCF2A6 /* PostReponse.swift in Sources */,
+				2375E0172BF4E6AC002760EE /* SeacrhViewController.swift in Sources */,
 				A215CB6F2BE8E87A001CC651 /* BoardViewController.swift in Sources */,
 				A2B1C8DA2BE9178200FAC48F /* PostService.swift in Sources */,
 				A2B1C8DE2BE917A900FAC48F /* Url.swift in Sources */,

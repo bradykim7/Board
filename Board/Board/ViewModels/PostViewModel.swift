@@ -27,15 +27,27 @@ class PostViewModel {
     }
     
     func loadPosts() {
-           provider.rx.request(.fetchPosts)
-               .observe(on: MainScheduler.instance)
-               .subscribe(onSuccess: { [weak self] response in
-                   self?.handleSuccess(response)
-               }, onFailure: { [weak self] error in
-                   self?.handleError(error)
-                   self?.loadSampleData()
-               })
-               .disposed(by: disposeBag)
+        provider.rx.request(.fetchPosts)
+           .observe(on: MainScheduler.instance)
+           .subscribe(onSuccess: { [weak self] response in
+               self?.handleSuccess(response)
+           }, onFailure: { [weak self] error in
+               self?.handleError(error)
+               self?.loadSampleData()
+           })
+           .disposed(by: disposeBag)
+    }
+    
+    func searchPosts(keyword: String, searchTarget: SearchTarget) {
+        provider.rx.request(.searchPosts(keyword: keyword, target: searchTarget))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] response in
+                self?.handleSuccess(response)
+            }, onFailure: { [weak self] error in
+                self?.handleError(error)
+                self?.loadSampleData()
+            })
+            .disposed(by: disposeBag)
     }
 
     private func handleSuccess(_ response: Response) {
