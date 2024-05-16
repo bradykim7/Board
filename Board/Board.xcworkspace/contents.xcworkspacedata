@@ -92,6 +92,16 @@
          location = "group:Views"
          name = "Views">
          <Group
+            location = "group:Post"
+            name = "Post">
+            <FileRef
+               location = "group:PostCelll.swift">
+            </FileRef>
+            <FileRef
+               location = "group:/Users/brady/workspace/Board/Board/Board/Views/Post/PaddedLabel.swift">
+            </FileRef>
+         </Group>
+         <Group
             location = "group:Controllers"
             name = "Controllers">
             <FileRef

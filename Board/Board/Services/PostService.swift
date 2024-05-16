@@ -9,8 +9,8 @@ import Moya
 import Foundation
 
 enum PostService {
-    case fetchPosts
-    case searchPosts(keyword: String, searchTarget: SearchTarget)
+    case fetchPosts(boardId: Int)
+    case searchPosts(boardId: Int, keyword: String, target: SearchTarget)
 }
 
 extension PostService: TargetType {
@@ -21,10 +21,10 @@ extension PostService: TargetType {
     
     var path: String {
         switch self {
-        case .fetchPosts:
-            return MailplugAPI.getAllPosts.path
-        case .searchPosts(let keyword, let searchTarget):
-            return MailplugAPI.getPostBySearchAndTarget(search: keyword, searchTarget: searchTarget).path
+        case .fetchPosts(let boardId):
+            return "/board/\(boardId)/posts"
+        case .searchPosts(let boardId, let keyword, let target):
+            return "/board/\(boardId)/posts"
         }
     }
     
@@ -111,10 +111,10 @@ extension PostService: TargetType {
         switch self {
         case .fetchPosts:
             return .requestPlain
-        case .searchPosts(let keyword, let searchTarget):
+        case .searchPosts(let boardId, let keyword, let target):
             let parameters: [String: Any] = [
                 "search": keyword,
-                "searchTarget": searchTarget,
+                "searchTarget": target,
                 // TODO offset limit 바꿔야함.
                 "offset": 0,
                 "limit": 20

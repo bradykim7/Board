@@ -8,8 +8,6 @@
 enum MailplugAPI {
     case getBase
     case getAllPosts
-    case getBoards
-    case getBoardDetails(boardId: Int)
     case getPostDetails(postId: Int)
     case getPostBySearchAndTarget(search: String, searchTarget: SearchTarget)
 
@@ -22,11 +20,7 @@ enum MailplugAPI {
     var path: String {
         switch self {
         case .getBase:
-            return "/boards"
-        case .getBoards:
-            return "/boards"
-        case .getBoardDetails(let boardId):
-            return "/boards/\(boardId)"
+            return baseURL
         case .getAllPosts:
 //            return "\(MailplugAPI.getBase.path)/28478/posts"
             return "/boards/28478/posts"

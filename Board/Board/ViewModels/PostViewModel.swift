@@ -27,7 +27,7 @@ class PostViewModel {
     }
     
     func loadPosts() {
-        provider.rx.request(.fetchPosts)
+        provider.rx.request(.fetchPosts(boardId: 28478))
            .observe(on: MainScheduler.instance)
            .subscribe(onSuccess: { [weak self] response in
                self?.handleSuccess(response)
@@ -38,8 +38,8 @@ class PostViewModel {
            .disposed(by: disposeBag)
     }
     
-    func searchPosts(keyword: String, searchTarget: SearchTarget) {
-        provider.rx.request(.searchPosts(keyword: keyword, target: searchTarget))
+    func searchPosts(keyword: String, target: SearchTarget) {
+        provider.rx.request(.searchPosts(boardId: 28478, keyword: keyword, target: target))
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] response in
                 self?.handleSuccess(response)
@@ -66,7 +66,7 @@ class PostViewModel {
 
     private func loadSampleData() {
         do {
-            let sampleData = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts.sampleData)
+            let sampleData = try JSONDecoder().decode([Post].self, from: PostService.fetchPosts(boardId: 28478).sampleData)
             postRelay.accept(sampleData)
         } catch {
             errorMessageSubject.onNext("Error decoding sample data: \(error)")

@@ -9,7 +9,7 @@ import Moya
 import Foundation
 
 enum BoardService {
-    case getBoard
+    case fetchBoard(boardId: Int)
 }
 
 extension BoardService: TargetType {
@@ -20,21 +20,21 @@ extension BoardService: TargetType {
     
     var path: String {
         switch self {
-            case .getBoard:
-            return MailplugAPI.getBoardDetails(boardId: 28478).path
+            case .fetchBoard(let boardId):
+            return "/board/\(boardId)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getBoard:
+        case .fetchBoard:
             return .get
         }
     }
     
     var sampleData: Data {
         switch self {
-        case .getBoard:
+        case .fetchBoard:
             let jsonString = """
             {
                 "boardId": 28478, // 게시판 id
@@ -55,8 +55,8 @@ extension BoardService: TargetType {
     
     var task: Task {
         switch self {
-            case .getBoard:
-                return .requestPlain
+        case .fetchBoard:
+            return .requestPlain
         }
     }
     

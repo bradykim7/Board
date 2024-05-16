@@ -21,6 +21,5 @@ class ViewController: UIViewController {
         test.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
-
 }
 

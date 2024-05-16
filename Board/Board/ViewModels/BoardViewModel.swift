@@ -29,7 +29,7 @@ class BoardViewModel {
     }
     
     func loadBoard() {
-        provider.rx.request(.getBoard)
+        provider.rx.request(.fetchBoard(boardId: 28478))
            .observe(on: MainScheduler.instance)
            .subscribe(onSuccess: { [weak self] response in
                self?.handleSuccess(response)
@@ -57,7 +57,7 @@ class BoardViewModel {
 
     private func loadSampleData() {
         do {
-            let sampleData = try JSONDecoder().decode([Board].self, from: BoardService.getBoard.sampleData)
+            let sampleData = try JSONDecoder().decode([Board].self, from: BoardService.fetchBoard(boardId: 28478).sampleData)
             BoardRealy.accept(sampleData)
         } catch {
             errorMessageSubject.onNext("Error decoding sample data: \(error)")

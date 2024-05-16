@@ -41,13 +41,21 @@ class BoardViewController: UIViewController {
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
         view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
     }
     
     func setupSearchController() {
          searchController = UISearchController(searchResultsController: nil)
-         searchController.obscuresBackgroundDuringPresentationsß = false
+         searchController.obscuresBackgroundDuringPresentation = false
          searchController.searchBar.placeholder = "Search Posts"
          navigationItem.searchController = searchController
          definesPresentationContext = true
@@ -55,8 +63,8 @@ class BoardViewController: UIViewController {
     
     func bindPostViewModel() {
         viewModel.postObservable
-            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (row, post, cell) in
-                cell.textLabel?.text = post.title
+            .bind(to: tableView.rx.items(cellIdentifier: "PostCell", cellType: PostCell.self)) { (row, post, cell) in
+                cell.configure(with: post)
             }
             .disposed(by: disposeBag)
 
@@ -78,7 +86,7 @@ class BoardViewController: UIViewController {
                 if query.isEmpty {
                     self?.viewModel.loadPosts()
                 } else {
-                    self?.viewModel.searchPosts(keyword: query, searchTarget: SearchTarget.All)
+                    self?.viewModel.searchPosts(keyword: query, target: SearchTarget.All)
                 }
             })
             .disposed(by: disposeBag)
