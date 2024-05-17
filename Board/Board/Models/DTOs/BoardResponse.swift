@@ -8,7 +8,6 @@
 import Foundation
 
 struct BoardResponse: Decodable {
-    
     let value: [Board]
     let count: Int
     let offset: Int

@@ -23,7 +23,7 @@ extension PostService: TargetType {
         switch self {
         case .fetchPosts(let boardId):
             return "/board/\(boardId)/posts"
-        case .searchPosts(let boardId, let keyword, let target):
+        case .searchPosts(let boardId, _, _):
             return "/board/\(boardId)/posts"
         }
     }
@@ -111,7 +111,7 @@ extension PostService: TargetType {
         switch self {
         case .fetchPosts:
             return .requestPlain
-        case .searchPosts(let boardId, let keyword, let target):
+        case .searchPosts(_, let keyword, let target):
             let parameters: [String: Any] = [
                 "search": keyword,
                 "searchTarget": target,
@@ -124,7 +124,7 @@ extension PostService: TargetType {
     }
     
     var headers: [String: String]? {
-        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTUyMjg3NTYsImV4cCI6MTcxNTIzMDU1NiwidXNlcm5hbWUiOiJtYWlsdGVzdEB3NjUud2lyby5rciIsInNjb3BlIjpbIm1haWwiLCJhZGRyZXNzYm9vayIsImNhbGVuZGFyIiwiYm9hcmQiLCJzbXMiLCJtZXNzZW5nZXIiLCJlYXMiLCJkcml2ZSIsIndvcmtub3RlIiwib3JnYW5pemF0aW9uIiwiYWRtaW4iLCJocm0iXSwic2VydmljZUlkIjoxMDAwMDAwODgzLCJnb29kcyI6IkdXX0RFREkiLCJhY2NvdW50TmFtZSI6Ilx1YWQwMFx1YjlhY1x1Yzc5MCIsImNsaWVudElQIjoiMTkyLjE2OC4zLjExIiwianRpIjoiMmIxZSJ9.gU6YlKoOCisp_o6JiQD5iYSDUJYEswIrbPrUHlBS2Ek"
+        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTU5MzIzMDMsImV4cCI6MTcxNTkzNDEwMywidXNlcm5hbWUiOiJnd25vMDFAZ3QwMS5teXBsdWcua3IiLCJzY29wZSI6WyJtYWlsIiwiYWRkcmVzc2Jvb2siLCJjYWxlbmRhciIsImJvYXJkIiwic21zIiwibWVzc2VuZ2VyIiwiZWFzIiwiZHJpdmUiLCJ3b3Jrbm90ZSIsIm9yZ2FuaXphdGlvbiIsInRhc2siLCJyZXNlcnZlIiwiYWRtaW4iLCJocm0iXSwic2VydmljZUlkIjoxNDQ2ODc3LCJnb29kcyI6IkdXX0RFREkiLCJhY2NvdW50TmFtZSI6Ilx1YWQwMFx1YjlhY1x1Yzc5MCIsImNsaWVudElQIjoiMjIwLjg1LjIxLjM1IiwianRpIjoiMDg0MCJ9.lU_Cq6cg6cvooHmf7ZdGOgpEgC6IFEa360gKpRbqX1E"
         
         return ["Content-Type": "application/json",
                            "Authorization": "Bearer \(token)"]

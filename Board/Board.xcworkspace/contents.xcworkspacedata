@@ -46,6 +46,9 @@
          location = "group:Models"
          name = "Models">
          <FileRef
+            location = "group:FavoriteOrdering.swift">
+         </FileRef>
+         <FileRef
             location = "group:Board.swift">
          </FileRef>
          <FileRef
@@ -59,6 +62,9 @@
             </FileRef>
             <FileRef
                location = "group:BoardResponse.swift">
+            </FileRef>
+            <FileRef
+               location = "group:/Users/mskim/Board/Board/Board/Models/DTOs/ApiResponse.swift">
             </FileRef>
          </Group>
          <FileRef
@@ -82,10 +88,13 @@
          location = "group:ViewModels"
          name = "ViewModels">
          <FileRef
-            location = "group:PostViewModel.swift">
+            location = "group:BoardVeiwModel.swift">
          </FileRef>
          <FileRef
-            location = "group:BoardViewModel.swift">
+            location = "group:ViewModel.swift">
+         </FileRef>
+         <FileRef
+            location = "group:PostViewModel.swift">
          </FileRef>
       </Group>
       <Group
@@ -95,10 +104,10 @@
             location = "group:Post"
             name = "Post">
             <FileRef
-               location = "group:PostCelll.swift">
+               location = "group:PaddedLabel.swift">
             </FileRef>
             <FileRef
-               location = "group:/Users/brady/workspace/Board/Board/Board/Views/Post/PaddedLabel.swift">
+               location = "group:PostCelll.swift">
             </FileRef>
          </Group>
          <Group

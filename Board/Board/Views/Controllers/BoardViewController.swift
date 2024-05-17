@@ -4,6 +4,12 @@
 //
 //  Created by min seok Kim on 5/4/24.
 //
+//
+//  BoardViewController.swift
+//  Board
+//
+//  Created by min seok Kim on 5/4/24.
+//
 import UIKit
 import RxSwift
 import RxCocoa
@@ -11,26 +17,31 @@ import RxCocoa
 class BoardViewController: UIViewController {
     
     private var tableView: UITableView!
-    private var viewModel: PostViewModel!
-    private var boardViewModel: BoardViewModel!
+    private lazy var postViewModel: PostViewModel = {
+        return PostViewModel()
+    }()
+    
+    private lazy var boardViewModel: BoardViewModel = {
+        return BoardViewModel()
+    }()
+    
     private var disposeBag = DisposeBag()
     private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = PostViewModel()
-        boardViewModel = BoardViewModel()
+        
         setupTableView()
         setTableNavibar()
         setupSearchController()
         bindPostViewModel()
         bindSearchController()
-        viewModel.loadPosts()
+        postViewModel.loadPosts()
     }
     
     func setTableNavibar() {
-        boardViewModel.loadBoard()
-        boardViewModel.BoardObservable
+        boardViewModel.loadBoards()
+        boardViewModel.dataObservable
             .map { boards in
                 return boards.first?.name ?? "Default Title"
             }
@@ -50,25 +61,24 @@ class BoardViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
     }
     
     func setupSearchController() {
-         searchController = UISearchController(searchResultsController: nil)
-         searchController.obscuresBackgroundDuringPresentation = false
-         searchController.searchBar.placeholder = "Search Posts"
-         navigationItem.searchController = searchController
-         definesPresentationContext = true
-     }
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Posts"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
     
     func bindPostViewModel() {
-        viewModel.postObservable
+        postViewModel.dataObservable
             .bind(to: tableView.rx.items(cellIdentifier: "PostCell", cellType: PostCell.self)) { (row, post, cell) in
                 cell.configure(with: post)
             }
             .disposed(by: disposeBag)
 
-        viewModel.errorMessageObservable
+        postViewModel.errorMessageObservable
             .subscribe(onNext: { [weak self] message in
                 guard let self = self, let message = message else { return }
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -81,15 +91,14 @@ class BoardViewController: UIViewController {
     func bindSearchController() {
         searchController.searchBar.rx.text.orEmpty
             .distinctUntilChanged()
-            .debounce(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] query in
                 if query.isEmpty {
-                    self?.viewModel.loadPosts()
+                    self?.postViewModel.loadPosts()
                 } else {
-                    self?.viewModel.searchPosts(keyword: query, target: SearchTarget.All)
+                    self?.postViewModel.searchPosts(keyword: query, target: SearchTarget.All)
                 }
             })
             .disposed(by: disposeBag)
     }
-
 }

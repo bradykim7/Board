@@ -67,4 +67,13 @@ struct Post: Decodable {
         case isOwner
         case isNotify
     }
+    
+    struct PostResponse: Decodable {
+        
+        let value: [Post]
+        let count: Int
+        let offset: Int
+        let limit: Int
+        let total: Int
+    }
 }

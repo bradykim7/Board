@@ -46,6 +46,7 @@ class PostCell: UITableViewCell {
         // Attachment Icon
         contentView.addSubview(attachmentIcon)
         
+        
         // Layout
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
