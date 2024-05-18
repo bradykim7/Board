@@ -39,7 +39,7 @@
          location = "group:Enums"
          name = "Enums">
          <FileRef
-            location = "group:Url.swift">
+            location = "group:/Users/brady/workspace/Board/Board/Board/Enums/MailplugAPI.swift">
          </FileRef>
       </Group>
       <Group
@@ -58,13 +58,7 @@
             location = "group:DTOs"
             name = "DTOs">
             <FileRef
-               location = "group:PostReponse.swift">
-            </FileRef>
-            <FileRef
-               location = "group:BoardResponse.swift">
-            </FileRef>
-            <FileRef
-               location = "group:/Users/mskim/Board/Board/Board/Models/DTOs/ApiResponse.swift">
+               location = "group:ApiResponse.swift">
             </FileRef>
          </Group>
          <FileRef
@@ -101,6 +95,13 @@
          location = "group:Views"
          name = "Views">
          <Group
+            location = "group:Board"
+            name = "Board">
+            <FileRef
+               location = "group:BoardCell.swift">
+            </FileRef>
+         </Group>
+         <Group
             location = "group:Post"
             name = "Post">
             <FileRef
@@ -114,7 +115,13 @@
             location = "group:Controllers"
             name = "Controllers">
             <FileRef
-               location = "group:ViewController.swift">
+               location = "group:BoardListViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:SeacrhViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:/Users/brady/workspace/Board/Board/Board/Views/Controllers/NavigationViewController.swift">
             </FileRef>
             <FileRef
                location = "group:BoardViewController.swift">
@@ -124,6 +131,53 @@
       <Group
          location = "group:Assets.xcassets"
          name = "Assets.xcassets">
+         <Group
+            location = "group:Mailplug/close.imageset"
+            name = "close.imageset">
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+            <FileRef
+               location = "group:close.png">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Mailplug"
+            name = "Mailplug">
+            <Group
+               location = "group:Union.imageset"
+               name = "Union.imageset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+               <FileRef
+                  location = "group:Union.png">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:search.imageset"
+               name = "search.imageset">
+               <FileRef
+                  location = "group:search.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Group 731.imageset"
+               name = "Group 731.imageset">
+               <FileRef
+                  location = "group:Group 731.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
          <Group
             location = "group:AppIcon.appiconset"
             name = "AppIcon.appiconset">

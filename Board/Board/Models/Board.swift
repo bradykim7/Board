@@ -29,8 +29,7 @@ struct Board: Decodable {
     var hasNewPost: Bool
     var orderNo: Int
     var capability: Capability
-    var favoriteOrdering: FavoriteOrdering
-    
+//    var favoriteOrdering: FavoriteOrdering
     
     enum CodingKeys: String, CodingKey {
         case id = "boardId"
@@ -40,14 +39,6 @@ struct Board: Decodable {
         case hasNewPost
         case orderNo
         case capability
-        case favoriteOrdering
-    }
-    
-    struct Response: Decodable {
-          let value: [Board]
-          let count: Int
-          let offset: Int
-          let limit: Int
-          let total: Int
+//        case favoriteOrdering
     }
 }

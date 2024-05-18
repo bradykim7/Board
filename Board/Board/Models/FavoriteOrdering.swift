@@ -15,8 +15,8 @@ import Foundation
 
 struct FavoriteOrdering: Decodable {
     
-    var sortDirection: String
-    var directionOrderNo: Int
+    var sortDirection: String?
+    var directionOrderNo: Int?
     
     enum CodingKeys: String, CodingKey {
         case sortDirection

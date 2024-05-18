@@ -12,7 +12,8 @@ import RxCocoa
 class ViewModel<T: Decodable, Service: TargetType> {
     
     private let disposeBag = DisposeBag()
-    private let provider = MoyaProvider<Service>()
+    private let provider = MoyaProvider<Service>(plugins: [NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose))])
+//    private let provider = MoyaProvider<Service>()
 
     private var dataRelay: BehaviorRelay<[T]> = BehaviorRelay<[T]>(value: [])
     private var errorMessageSubject: PublishSubject<String?> = PublishSubject<String?>()
@@ -41,7 +42,6 @@ class ViewModel<T: Decodable, Service: TargetType> {
     private func handleSuccess(_ response: Response) {
         do {
             let data = try JSONDecoder().decode(ApiResponse<T>.self, from: response.data)
-            print("Decoded API Response: \(data)")
             dataRelay.accept(data.value)
         } catch {
             print("Decoded data: \(error)")

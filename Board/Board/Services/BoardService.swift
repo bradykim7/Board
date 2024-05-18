@@ -64,7 +64,7 @@ extension BoardService: TargetType {
     }
     
     var headers: [String: String]? {
-        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTU5MzIzMDMsImV4cCI6MTcxNTkzNDEwMywidXNlcm5hbWUiOiJnd25vMDFAZ3QwMS5teXBsdWcua3IiLCJzY29wZSI6WyJtYWlsIiwiYWRkcmVzc2Jvb2siLCJjYWxlbmRhciIsImJvYXJkIiwic21zIiwibWVzc2VuZ2VyIiwiZWFzIiwiZHJpdmUiLCJ3b3Jrbm90ZSIsIm9yZ2FuaXphdGlvbiIsInRhc2siLCJyZXNlcnZlIiwiYWRtaW4iLCJocm0iXSwic2VydmljZUlkIjoxNDQ2ODc3LCJnb29kcyI6IkdXX0RFREkiLCJhY2NvdW50TmFtZSI6Ilx1YWQwMFx1YjlhY1x1Yzc5MCIsImNsaWVudElQIjoiMjIwLjg1LjIxLjM1IiwianRpIjoiMDg0MCJ9.lU_Cq6cg6cvooHmf7ZdGOgpEgC6IFEa360gKpRbqX1E"
+        let token = MailplugAPI.getToken.path
         
         return ["Content-Type": "application/json",
                            "Authorization": "Bearer \(token)"]

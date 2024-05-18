@@ -11,6 +11,7 @@ target 'Board' do
   pod 'RxSwift', '~> 6.5'
   pod 'Moya/RxSwift'
   pod 'RxCocoa'
+  pod 'SnapKit'
   # Combine은 Apple의 기본 프레임워크이므로 별도로 추가할 필요가 없습니다.
   # RxSwift와 같이 사용하려면 RxCombine 라이브러리를 사용할 수 있습니다.
 #pod 'RxCombine', '~> 1.9'

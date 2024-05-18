@@ -42,7 +42,7 @@ struct Post: Decodable {
     var hasReply: Bool
     var commentsCount: Int
     var attachmentsCount: Int
-    var attachments: [String]?
+//    var attachments: [String]?
     var isAnonymous: Bool
     var isOwner: Bool
     var isNotify: Bool
@@ -62,18 +62,9 @@ struct Post: Decodable {
         case hasReply
         case commentsCount
         case attachmentsCount
-        case attachments
+//        case attachments
         case isAnonymous
         case isOwner
         case isNotify
-    }
-    
-    struct PostResponse: Decodable {
-        
-        let value: [Post]
-        let count: Int
-        let offset: Int
-        let limit: Int
-        let total: Int
     }
 }
