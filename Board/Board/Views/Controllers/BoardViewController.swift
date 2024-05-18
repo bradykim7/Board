@@ -7,16 +7,14 @@ class BoardViewController: UIViewController {
     
     private var tableView: UITableView!
     
-    private var boardViewModel: BoardViewModel!
-    private var postViewModel: PostViewModel!
+    private var boardViewModel = BoardViewModel()
+    private var postViewModel = PostViewModel()
     
     private var disposeBag = DisposeBag()
     private var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.boardViewModel = BoardViewModel()
-        self.postViewModel = PostViewModel()
         setupTableView()
         setupNavigationBar()
         bindPostViewModel()
@@ -34,7 +32,7 @@ class BoardViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
     func updateBoard(_ board: Board) {
         // 게시판 이름을 네비게이션 타이틀로 설정
         let titleLabel = UILabel()
@@ -44,12 +42,11 @@ class BoardViewController: UIViewController {
         titleLabel.frame = CGRect(x: 0, y: 0, width: width, height: 60)
         titleLabel.text = board.name
         navigationItem.titleView = titleLabel
-
+        
         // 해당 게시판의 게시글 로드
         postViewModel.loadPosts(boardId: board.id)
-        bindPostViewModel()
     }
-
+    
     func setupNavigationBar() {
         let boardButtonImage = UIImage(named: "Group 731")
         let boardLeftButton = UIButton()
@@ -60,7 +57,7 @@ class BoardViewController: UIViewController {
         boardLeftButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 24, height: 24))
         }
-
+        
         let searchButtonImage = UIImage(named: "search")
         let boardRightButton = UIButton()
         boardRightButton.setImage(searchButtonImage, for: .normal)
@@ -78,7 +75,7 @@ class BoardViewController: UIViewController {
         boardListVC.onBoardSelected = { [weak self] board in
             self?.updateBoard(board)
         }
-
+        
         let navigationController = UINavigationController(rootViewController: boardListVC)
         navigationController.modalPresentationStyle = .formSheet
         self.present(navigationController, animated: true, completion: nil)
@@ -87,7 +84,7 @@ class BoardViewController: UIViewController {
     @objc func buttonTapped() {
         print("Button was tapped")
     }
-
+    
     func setupTableView() {
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +105,7 @@ class BoardViewController: UIViewController {
                 cell.configure(with: post)
             }
             .disposed(by: disposeBag)
-
+        
         // 에러 메시지 처리
         postViewModel.errorMessageObservable
             .subscribe(onNext: { [weak self] message in
@@ -119,7 +116,7 @@ class BoardViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
     func bindSearchController() {
         searchController.searchBar.rx.text.orEmpty
             .distinctUntilChanged()

@@ -7,8 +7,8 @@
 
 import UIKit
 
-class PaddedLabel: UILabel {
-    var edgeInsets = UIEdgeInsets(top: 2.5, left: 8, bottom: 2.5, right: 8)
+class RoundCell: UILabel {
+    var edgeInsets = UIEdgeInsets(top: 2.5, left: 6, bottom: 2.5, right: 6)
     
     override func drawText(in rect: CGRect) {
         let paddedRect = rect.inset(by: edgeInsets)
