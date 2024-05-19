@@ -46,6 +46,9 @@
          location = "group:Enums"
          name = "Enums">
          <FileRef
+            location = "group:SearchTarget.swift">
+         </FileRef>
+         <FileRef
             location = "group:/Users/brady/workspace/Board/Board/Board/Enums/MailplugAPI.swift">
          </FileRef>
       </Group>
@@ -137,6 +140,9 @@
          <Group
             location = "group:Controllers"
             name = "Controllers">
+            <FileRef
+               location = "group:SearchResultsViewController.swift">
+            </FileRef>
             <FileRef
                location = "group:BoardListViewController.swift">
             </FileRef>

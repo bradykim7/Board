@@ -114,7 +114,7 @@ extension PostService: TargetType {
         case .searchPosts(_, let keyword, let target):
             let parameters: [String: Any] = [
                 "search": keyword,
-                "searchTarget": target,
+                "searchTarget": target.rawValue,
                 // TODO offset limit 바꿔야함.
                 "offset": 0,
                 "limit": 20

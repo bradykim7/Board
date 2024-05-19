@@ -10,7 +10,9 @@ class SearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let tableView = UITableView()
     private let searchResults = BehaviorRelay<[String]>(value: [])
-    
+    private let postViewModel = PostViewModel()
+    private var resultsViewController: SearchResultsViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
@@ -66,6 +68,7 @@ class SearchViewController: UIViewController {
         searchBar.rx.cancelButtonClicked
             .subscribe(onNext: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
+
             })
             .disposed(by: disposeBag)
         
@@ -116,7 +119,31 @@ class SearchViewController: UIViewController {
         tableView.rx.modelSelected(String.self)
             .subscribe(onNext: { model in
                 print("Selected: \(model)")
-                // 셀 클릭 시 동작 추가
+                // 선택된 셀의 텍스트를 사용하여 검색 수행
+                let components = model.split(separator: ":")
+                let target = String(components.first ?? "")
+                let query = String(components.last ?? "").trimmingCharacters(in: .whitespaces)
+                
+                // SearchTarget 설정
+                let searchTarget: SearchTarget
+                switch target {
+                case "전체":
+                    searchTarget = SearchTarget.All
+                case "제목":
+                    searchTarget = SearchTarget.Subject
+                case "내용":
+                    searchTarget = SearchTarget.Content
+                case "작성자":
+                    searchTarget = SearchTarget.Writer
+                default:
+                    searchTarget = SearchTarget.All
+                }
+                
+                self.postViewModel.searchPosts(boardId: self.currentBoard.id, keyword: query, target: searchTarget)
+                // 결과를 보여줄 새로운 뷰 컨트롤러로 이동
+                let resultsVC = SearchResultsViewController()
+                resultsVC.viewModel = self.postViewModel
+                self.navigationController?.pushViewController(resultsVC, animated: true)
             })
             .disposed(by: disposeBag)
     }

@@ -48,6 +48,7 @@ class DefaultSearchCell: UITableViewCell {
     }
     
     func configure() {
+        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         cellImageView.image = UIImage(named: "Illust")
         cellLabel.text = "게시글의 제목, 내용 또는 작성자에 포함된 단어 또는 문장을 검색해 주세요."
     }

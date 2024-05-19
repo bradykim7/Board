@@ -18,7 +18,7 @@ enum MailplugAPI {
     }
     
     private var Token: String {
-        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYxMjc0ODUsImV4cCI6MTcxNjEyOTI4NSwidXNlcm5hbWUiOiJnd25vMDFAZ3QwMS5teXBsdWcua3IiLCJzY29wZSI6WyJtYWlsIiwiYWRkcmVzc2Jvb2siLCJjYWxlbmRhciIsImJvYXJkIiwic21zIiwibWVzc2VuZ2VyIiwiZWFzIiwiZHJpdmUiLCJ3b3Jrbm90ZSIsIm9yZ2FuaXphdGlvbiIsInRhc2siLCJyZXNlcnZlIiwiaHJtIl0sInNlcnZpY2VJZCI6MTQ0Njg3NywiZ29vZHMiOiJHV19ERURJIiwiYWNjb3VudE5hbWUiOiJcdWFkMDBcdWI5YWNcdWM3OTAiLCJjbGllbnRJUCI6IjExOS43MC4xMjAuNDciLCJqdGkiOiJjYzc5In0.DCXEyUtZx-59Td1pxDri48DnHf7Hwpv-xTuDTGHFvQk"
+        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYxMzE0OTcsImV4cCI6MTcxNjEzMzI5NywidXNlcm5hbWUiOiJnd25vMDFAZ3QwMS5teXBsdWcua3IiLCJzY29wZSI6WyJtYWlsIiwiYWRkcmVzc2Jvb2siLCJjYWxlbmRhciIsImJvYXJkIiwic21zIiwibWVzc2VuZ2VyIiwiZWFzIiwiZHJpdmUiLCJ3b3Jrbm90ZSIsIm9yZ2FuaXphdGlvbiIsInRhc2siLCJyZXNlcnZlIiwiaHJtIl0sInNlcnZpY2VJZCI6MTQ0Njg3NywiZ29vZHMiOiJHV19ERURJIiwiYWNjb3VudE5hbWUiOiJcdWFkMDBcdWI5YWNcdWM3OTAiLCJjbGllbnRJUCI6IjExOS43MC4xMjAuNDciLCJqdGkiOiI3YWNkIn0.AjPmlIseVj6T-Tf80PBms4mRjjKA_ZLilpiVKqE1E-A"
     }
     
     var path: String {
@@ -31,4 +31,3 @@ enum MailplugAPI {
         
     }
 }
-
