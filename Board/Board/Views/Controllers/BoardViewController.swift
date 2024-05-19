@@ -12,10 +12,14 @@ class BoardViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
     private var searchController: UISearchController!
+    private var refreshControl = UIRefreshControl()
+    
+    private var currentBoard: Board? // 현재 선택된 게시판 정보를 저장할 변수
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupRefreshControl() // Refresh Control 설정 추가
         setupNavigationBar()
         bindPostViewModel()
         setupInitialBoard()
@@ -34,6 +38,7 @@ class BoardViewController: UIViewController {
     }
     
     func updateBoard(_ board: Board) {
+        currentBoard = board // 현재 선택된 게시판 정보를 업데이트
         // 게시판 이름을 네비게이션 타이틀로 설정
         let titleLabel = UILabel()
         titleLabel.textColor = .black
@@ -82,7 +87,18 @@ class BoardViewController: UIViewController {
     }
     
     @objc func buttonTapped() {
-        print("Button was tapped")
+        guard let currentBoard = currentBoard else { return }
+        let searchVC = SearchViewController(board: currentBoard)
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     func setupTableView() {
@@ -95,6 +111,19 @@ class BoardViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setupRefreshControl() {
+        // Refresh Control을 테이블 뷰에 추가
+        tableView.refreshControl = refreshControl
+        // 리프레시 동작 설정
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    }
+    
+    @objc private func refreshData() {
+        // 현재 선택된 게시판의 ID를 사용하여 데이터 로드
+        guard let currentBoard = currentBoard else { return }
+        postViewModel.loadPosts(boardId: currentBoard.id)
     }
     
     func bindPostViewModel() {
@@ -115,18 +144,11 @@ class BoardViewController: UIViewController {
                 self.present(alert, animated: true)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func bindSearchController() {
-        searchController.searchBar.rx.text.orEmpty
-            .distinctUntilChanged()
-            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] query in
-                if query.isEmpty {
-                    self?.postViewModel.loadPosts(boardId: 1234)
-                } else {
-                    self?.postViewModel.searchPosts(boardId: 1234, keyword: query, target: SearchTarget.All)
-                }
+        
+        // 데이터 로드 완료 후 리프레시 컨트롤 종료
+        postViewModel.dataObservable
+            .subscribe(onNext: { [weak self] _ in
+                self?.refreshControl.endRefreshing()
             })
             .disposed(by: disposeBag)
     }

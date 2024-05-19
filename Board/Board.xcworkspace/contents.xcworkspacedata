@@ -89,6 +89,9 @@
          location = "group:ViewModels"
          name = "ViewModels">
          <FileRef
+            location = "group:SearchViewModel.swift">
+         </FileRef>
+         <FileRef
             location = "group:BoardVeiwModel.swift">
          </FileRef>
          <FileRef
@@ -101,6 +104,16 @@
       <Group
          location = "group:Views"
          name = "Views">
+         <Group
+            location = "group:Search"
+            name = "Search">
+            <FileRef
+               location = "group:DefaultSearchCell.swift">
+            </FileRef>
+            <FileRef
+               location = "group:SearchCell.swift">
+            </FileRef>
+         </Group>
          <Group
             location = "group:Board"
             name = "Board">
