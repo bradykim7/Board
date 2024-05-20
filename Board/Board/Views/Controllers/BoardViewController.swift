@@ -2,19 +2,33 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
+import Moya
 
 class BoardViewController: UIViewController {
     
+    
     private var tableView: UITableView!
     
-    private var boardViewModel = BoardViewModel()
-    private var postViewModel = PostViewModel()
+    private let boardProvider = MoyaProvider<BoardService>()
+    private let postProvider = MoyaProvider<PostService>()
+    private var boardViewModel: ViewModel<Board, BoardService>
+    private var postViewModel: ViewModel<Post, PostService>
     
     private var disposeBag = DisposeBag()
     private var searchController: UISearchController!
     private var refreshControl = UIRefreshControl()
     
     private var currentBoard: Board? // 현재 선택된 게시판 정보를 저장할 변수
+    
+    init() {
+        boardViewModel = ViewModel<Board, BoardService>(provider: boardProvider)
+        postViewModel = ViewModel<Post, PostService>(provider: postProvider)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +41,8 @@ class BoardViewController: UIViewController {
     
     func setupInitialBoard() {
         // 초기 게시판 설정 및 게시글 로드
-        boardViewModel.loadBoards()
+        let request = BoardService.fetchBoards
+        boardViewModel.loadData(request: request, sampleData: request.sampleData)
         boardViewModel.dataObservable
             .compactMap { $0.first }
             .take(1)
@@ -49,7 +64,8 @@ class BoardViewController: UIViewController {
         navigationItem.titleView = titleLabel
         
         // 해당 게시판의 게시글 로드
-        postViewModel.loadPosts(boardId: board.id)
+        let postRequest = PostService.fetchPosts(boardId: board.id)
+        postViewModel.loadData(request: postRequest, sampleData: postRequest.sampleData)
     }
     
     func setupNavigationBar() {
@@ -123,7 +139,8 @@ class BoardViewController: UIViewController {
     @objc private func refreshData() {
         // 현재 선택된 게시판의 ID를 사용하여 데이터 로드
         guard let currentBoard = currentBoard else { return }
-        postViewModel.loadPosts(boardId: currentBoard.id)
+        let postRequest = PostService.fetchPosts(boardId: currentBoard.id)
+        postViewModel.loadData(request: postRequest, sampleData: postRequest.sampleData)
     }
     
     func bindPostViewModel() {

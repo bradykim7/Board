@@ -1,17 +1,11 @@
-//
-//  SearchResultsViewController.swift
-//  Board
-//
-//  Created by Minseok Brady Kim on 5/19/24.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
+import Moya
 
 class SearchResultsViewController: UIViewController {
     
-    var viewModel: PostViewModel!
+    var viewModel: ViewModel<Post, PostService>!
     private let tableView = UITableView()
     private let disposeBag = DisposeBag()
 
@@ -21,7 +15,6 @@ class SearchResultsViewController: UIViewController {
         bindViewModel()
     }
     
-   
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -38,5 +31,4 @@ class SearchResultsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
 }

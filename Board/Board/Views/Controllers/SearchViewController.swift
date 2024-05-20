@@ -2,6 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
+import Moya
 
 class SearchViewController: UIViewController {
     
@@ -10,7 +11,9 @@ class SearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let tableView = UITableView()
     private let searchResults = BehaviorRelay<[String]>(value: [])
-    private let postViewModel = PostViewModel()
+    private var postViewModel: ViewModel<Post, PostService>!
+    private let postProvider = MoyaProvider<PostService>()
+
     private var resultsViewController: SearchResultsViewController!
 
     override func viewDidLoad() {
@@ -23,6 +26,8 @@ class SearchViewController: UIViewController {
     init(board: Board) {
         super.init(nibName: nil, bundle: nil)
         currentBoard = board
+        postViewModel = ViewModel<Post, PostService>(provider: postProvider)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -139,7 +144,8 @@ class SearchViewController: UIViewController {
                     searchTarget = SearchTarget.All
                 }
                 
-                self.postViewModel.searchPosts(boardId: self.currentBoard.id, keyword: query, target: searchTarget)
+                let postRequest = PostService.searchPosts(boardId: self.currentBoard.id, keyword: query, target: searchTarget)
+                self.postViewModel.loadData(request: postRequest, sampleData: PostService.searchPosts(boardId: 28478, keyword: query, target: searchTarget).sampleData)
                 // 결과를 보여줄 새로운 뷰 컨트롤러로 이동
                 let resultsVC = SearchResultsViewController()
                 resultsVC.viewModel = self.postViewModel

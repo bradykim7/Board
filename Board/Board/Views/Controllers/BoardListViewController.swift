@@ -1,20 +1,14 @@
-//
-//  BoardListViewController.swift
-//  Board
-//
-//  Created by Minseok Brady Kim on 5/17/24.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
+import Moya
 
 class BoardListViewController: UIViewController {
     private var tableView: UITableView!
     private var disposeBag = DisposeBag()
     
-    var boardViewModel: BoardViewModel!
+    var boardViewModel: ViewModel<Board, BoardService>!
     var onBoardSelected: ((Board) -> Void)?
 
     override func viewDidLoad() {
@@ -38,7 +32,6 @@ class BoardListViewController: UIViewController {
         }
     }
     
-    
     func setupTableView() {
         self.view.backgroundColor = .white
         tableView = UITableView(frame: self.view.bounds, style: .plain)
@@ -56,7 +49,6 @@ class BoardListViewController: UIViewController {
     @objc private func closeButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
-
     
     func bindBoardViewModel() {
         boardViewModel.dataObservable

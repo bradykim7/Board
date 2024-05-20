@@ -46,10 +46,10 @@
          location = "group:Enums"
          name = "Enums">
          <FileRef
-            location = "group:SearchTarget.swift">
+            location = "group:MailplugAPI.swift">
          </FileRef>
          <FileRef
-            location = "group:/Users/brady/workspace/Board/Board/Board/Enums/MailplugAPI.swift">
+            location = "group:SearchTarget.swift">
          </FileRef>
       </Group>
       <Group
@@ -92,16 +92,7 @@
          location = "group:ViewModels"
          name = "ViewModels">
          <FileRef
-            location = "group:SearchViewModel.swift">
-         </FileRef>
-         <FileRef
-            location = "group:BoardVeiwModel.swift">
-         </FileRef>
-         <FileRef
             location = "group:ViewModel.swift">
-         </FileRef>
-         <FileRef
-            location = "group:PostViewModel.swift">
          </FileRef>
       </Group>
       <Group
@@ -141,16 +132,16 @@
             location = "group:Controllers"
             name = "Controllers">
             <FileRef
+               location = "group:NavigationViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:SearchViewController.swift">
+            </FileRef>
+            <FileRef
                location = "group:SearchResultsViewController.swift">
             </FileRef>
             <FileRef
                location = "group:BoardListViewController.swift">
-            </FileRef>
-            <FileRef
-               location = "group:SeacrhViewController.swift">
-            </FileRef>
-            <FileRef
-               location = "group:/Users/brady/workspace/Board/Board/Board/Views/Controllers/NavigationViewController.swift">
             </FileRef>
             <FileRef
                location = "group:BoardViewController.swift">
